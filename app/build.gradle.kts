@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id( "kotlin-kapt") // これが必要
 }
 
 android {
@@ -40,7 +41,10 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.material)
+    implementation(libs.androidx.room.runtime)
+    kapt (libs.androidx.room.compiler)
+    implementation (libs.material.v110alpha06)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
