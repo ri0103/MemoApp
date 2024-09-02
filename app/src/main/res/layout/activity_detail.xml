@@ -15,20 +15,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="16dp">
+        android:layout_margin="24dp"
+        >
 
         <TextView
             android:id="@+id/title_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="タイトル"
-            android:textSize="36sp"/>
+            android:fontFamily="@font/mplusbold"
+            android:textSize="36sp"
+            android:layout_marginBottom="16dp"/>
 
         <TextView
             android:id="@+id/memo_text_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="メモ"
+            android:fontFamily="@font/mplusregular"
             android:textSize="16sp"/>
 
     </LinearLayout>

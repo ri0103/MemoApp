@@ -7,38 +7,51 @@
     android:minHeight="72dp">
 
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/data_cell_linear_layout"
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:orientation="vertical">
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="#dae4ed"
+        android:elevation="8dp"
+        android:layout_margin="8dp">
 
-        <TextView
-            android:id="@+id/title_text_view"
+        <LinearLayout
+            android:id="@+id/data_cell_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:text="タイトル"
-            android:textSize="36sp"
-             />
+            android:padding="8dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/memo_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:text="メモ"
-            android:textSize="24sp"
-             />
+            <TextView
+                android:id="@+id/title_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/mplusbold"
+                android:text="タイトル"
+                android:textSize="24sp"
+                android:layout_marginBottom="4dp"
+                 />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/memo_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/mplusregular"
+                android:text="メモ"
+                android:textSize="16sp"
+                 />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 
 <!--    <View-->

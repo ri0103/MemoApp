@@ -40,14 +40,17 @@ class EditMemoActivity : AppCompatActivity() {
             val titleText = binding.titleEditText.text.toString()
             val memoText = binding.memoEditText.text.toString()
 
-            if (memoId == -1L){
-                val newMemoData: MemoData = MemoData(title = titleText, memo = memoText)
-                db.memoDataDao().insert(newMemoData)
-            }else{
-                val updatedMemoData: MemoData = MemoData(id = memoId, title = titleText, memo = memoText)
-                db.memoDataDao().update(updatedMemoData)
+            if (titleText!="" || memoText!=""){
+                if (memoId == -1L){
+                    val newMemoData: MemoData = MemoData(title = titleText, memo = memoText)
+                    db.memoDataDao().insert(newMemoData)
+                }else{
+                    val updatedMemoData: MemoData = MemoData(id = memoId, title = titleText, memo = memoText)
+                    db.memoDataDao().update(updatedMemoData)
+                }
+                finish()
             }
-            finish()
+
         }
 
     }
