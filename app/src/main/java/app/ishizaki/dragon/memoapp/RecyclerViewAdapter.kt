@@ -1,6 +1,7 @@
 package app.ishizaki.dragon.memoapp
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
@@ -26,7 +27,6 @@ class RecyclerViewAdapter(
 
             override fun areContentsTheSame(oldItem: MemoData, newItem: MemoData) =
                 oldItem == newItem
-
         }
     }
 
@@ -39,6 +39,13 @@ class RecyclerViewAdapter(
         val item = getItem(position)
         holder.binding.titleTextView.text = item.title
         holder.binding.memoTextView.text = item.memo
+
+        holder.binding.cellConstraintLayout.setOnClickListener {
+            val detailIntent = Intent(context, DetailActivity::class.java).apply{
+                putExtra("memo_id", item.id)
+            }
+            context.startActivity(detailIntent)
+        }
 //        holder.binding.checkBox.setOnClickListener {
 //            _checkEvent.value = item.id
 //            holder.binding.checkBox.isChecked = false

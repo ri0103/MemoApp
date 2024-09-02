@@ -15,7 +15,6 @@ import java.time.format.DateTimeFormatter
 class EditMemoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditMemoBinding;
-    private lateinit var adapter: RecyclerViewAdapter
 
     private lateinit var db: AppDatabase
 
@@ -26,22 +25,28 @@ class EditMemoActivity : AppCompatActivity() {
 
         db = AppDatabase.getInstance(this.applicationContext)
 
-        adapter = RecyclerViewAdapter(this)
+        val memoId = intent.getLongExtra("memo_id", -1L)
+
+        val memoData = db.memoDataDao().getMemoById(memoId)
+        val memoTitleOriginal = memoData?.title
+        val memoTextOriginal = memoData?.memo
+
+        binding.titleEditText.setText(memoTitleOriginal)
+        binding.memoEditText.setText(memoTextOriginal)
+
 
         binding.saveMemoButton.setOnClickListener {
 
             val titleText = binding.titleEditText.text.toString()
             val memoText = binding.memoEditText.text.toString()
-//            val formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss")
-//            val newMemoId = formatter.format(LocalDateTime.now()).toLong()
-            val newMemoData: MemoData = MemoData(title = titleText, memo = memoText)
 
-            db.memoDataDao().insert(newMemoData)
-            adapter.submitList(db.memoDataDao().getAll())
-
-//            finish()
-            val mainIntent = Intent(this, MainActivity::class.java)
-            startActivity(mainIntent)
+            if (memoId == -1L){
+                val newMemoData: MemoData = MemoData(title = titleText, memo = memoText)
+                db.memoDataDao().insert(newMemoData)
+            }else{
+                val updatedMemoData: MemoData = MemoData(id = memoId, title = titleText, memo = memoText)
+                db.memoDataDao().update(updatedMemoData)
+            }
             finish()
         }
 

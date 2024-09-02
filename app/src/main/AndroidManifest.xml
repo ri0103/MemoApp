@@ -13,6 +13,10 @@
         android:theme="@style/Theme.MemoApp"
         tools:targetApi="31">
         <activity
+            android:name=".DetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MemoApp" />
+        <activity
             android:name=".EditMemoActivity"
             android:exported="false" />
         <activity

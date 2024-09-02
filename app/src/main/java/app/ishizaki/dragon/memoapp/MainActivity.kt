@@ -11,8 +11,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: RecyclerViewAdapter
 
-//    private val memoList: MutableList<MemoData> = mutableListOf()
-
     private lateinit var db: AppDatabase
 
 
@@ -27,14 +25,19 @@ class MainActivity : AppCompatActivity() {
         binding.memoRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.memoRecyclerView.adapter = adapter
 
-        adapter.submitList(db.memoDataDao().getAll())
+//        adapter.submitList(db.memoDataDao().getAll())
 
         binding.addMemoFab.setOnClickListener {
             val addIntent = Intent(this, EditMemoActivity::class.java)
             startActivity(addIntent)
-            finish()
         }
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // 必要な処理をここで行う
+        adapter.submitList(db.memoDataDao().getAll())
     }
 }
